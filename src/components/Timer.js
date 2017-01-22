@@ -23,8 +23,10 @@ class Timer extends Component {
             />
           );
         })}
-        <button onClick={this.handleStartClick}>Start</button>{" "}
-        <button onClick={this.handleResetClick}>Reset</button>
+        <p>
+          <button onClick={this.handleStartClick}>Start</button>{" "}
+          <button onClick={this.handleResetClick}>Reset</button>
+        </p>
       </div>
     );
   }

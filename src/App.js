@@ -29,6 +29,7 @@ class App extends Component {
       timePerCycle: timePerCycle,
       cargo: cargoSize,
       maxValue: Math.round(cargoSize / ( orePerCycle / timePerCycle )),
+      message: "Idle...",
     };
     this.tick = 1; // seconds.
     this.timer = 0;
@@ -47,7 +48,10 @@ class App extends Component {
 
   startTimer() {
     if (!this.state.started) {
-      this.setState({ started: true  });
+      this.setState({ 
+        started: true,
+        message: "Running...",
+      });
       this.timer = setInterval(this.countDown, this.tick * 1000);
     }
   }
@@ -58,12 +62,14 @@ class App extends Component {
       started: false,
       cycleTimer: 0,
       cargoFullTimer: 0,
+      message: "Stopped...",
     });
   }
 
   countDown() {
-    if (this.state.cargoFullTimer === this.maxValue) {
+    if (this.state.cargoFullTimer >= this.state.maxValue) {
       this.resetTimer();
+      this.setState({ message: "Cargo is full!!" });
     } else {
       this.setState({ cargoFullTimer: this.state.cargoFullTimer + this.tick });
       if (this.state.cycleTimer === this.state.timePerCycle) {
@@ -99,7 +105,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header status={this.state.message} />
         <Timer
           barData={[
             {
@@ -116,6 +122,7 @@ class App extends Component {
           startClick={this.handleStartClick}
           resetClick={this.handleResetClick}
         />
+        <br />
         <Specs
           saveClick={this.handleSaveClick}
           textChange={this.handleTextChange}

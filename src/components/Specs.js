@@ -23,8 +23,9 @@ class Specs extends Component {
         <label>Cargo size:</label>
         <input type="text" onChange={this.handleChange} name="cargoSize" value={this.props.cargo} />
         m3
-        <br />
-        <button onClick={this.handleSaveClick}>Save to localStorage</button>
+        <p>
+          <button onClick={this.handleSaveClick}>Save to localStorage</button>
+        </p>
       </div>
     );
   }

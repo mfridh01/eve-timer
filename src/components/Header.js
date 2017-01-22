@@ -4,10 +4,15 @@ class Header extends Component {
   render() {
     return (
       <div>
-       Eve mining timer.
+        <h1>Eve mining timer.</h1>
+        {this.props.status}
       </div>
     );
   }
 }
+
+Header.propTypes = {
+  status: React.PropTypes.string,
+};
 
 export default Header;
